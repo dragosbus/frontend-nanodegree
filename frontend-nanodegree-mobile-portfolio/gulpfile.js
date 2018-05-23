@@ -17,9 +17,9 @@ gulp.task('default', function () {
 });
 
 gulp.task('imagemin', () =>
-    gulp.src(['img/**/*', "views/images/**"])
+    gulp.src(['img/**/*', 'views/images/**/*'])
         .pipe(imagemin())
-        .pipe(gulp.dest('dist/img'))
+        .pipe(gulp.dest('./dist/img'))
 );
 
 gulp.task('scripts', function () {
