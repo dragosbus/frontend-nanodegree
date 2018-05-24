@@ -487,14 +487,11 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   console.log("Average scripting time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
-// The following code for sliding background pizzas was pulled from Ilya's demo found at:
-// https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
-
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-
+  //select dom elements outside of the loop for avoiding this selection at every iteration
   var items = document.querySelectorAll('.mover');
   var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   var phaseSin = Math.sin((scrollTop / 1250));
@@ -523,6 +520,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var rows = 6;
   var s = 256;
   var elem;
+  //reduce the number of pizzas for better performance
   var totalPizzas = cols * rows;
   const movingPizza = document.querySelector("#movingPizzas1")
   for (var i = 0; i < 200; i++) {
