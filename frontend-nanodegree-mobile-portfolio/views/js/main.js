@@ -494,10 +494,9 @@ function updatePositions() {
   //select dom elements outside of the loop for avoiding this selection at every iteration
   var items = document.querySelectorAll('.mover');
   var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-  var phaseSin = Math.sin((scrollTop / 1250));
   for (var i = 0; i < items.length; i++) {
     // document.body.scrollTop is no longer supported in Chrome.
-    var phase = phaseSin + (i % 5);
+    var phase = Math.sin((scrollTop / 1250)) + (i % 5);
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -521,9 +520,11 @@ document.addEventListener('DOMContentLoaded', function() {
   var s = 256;
   var elem;
   //reduce the number of pizzas for better performance
+  cols = Math.ceil(window.innerWidth / (256 - 73.33));
+  rows = Math.ceil(window.innerHeight / 256);
   var totalPizzas = cols * rows;
   const movingPizza = document.querySelector("#movingPizzas1")
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < totalPizzas; i++) {
     elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
