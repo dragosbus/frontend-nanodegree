@@ -1,13 +1,13 @@
 const UI = (function () {
 
-    let wrapperMenu, menu, header, map, form;
+    let wrapperMenu, menu, header, form, locationsList;
    
     function init() {
         wrapperMenu = document.querySelector('.wrapper-menu');
         menu = document.querySelector('.menu');
         header = document.querySelector('.main-header');
-        map = document.getElementById('map');
         form = document.getElementById('locations');
+        locationsList = document.querySelector('.locations');
 
         wrapperMenu.addEventListener('click', toggleClases);
 
@@ -32,7 +32,35 @@ const UI = (function () {
             if (text.value) resolve(text.value);
             else reject("Invalid Location");
         }).then(res => {
-            getData(res).then(res=>console.log(res))
+            getData(res).then(res => {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: {
+                        lat: res.response.geocode.feature.geometry.center.lat,
+                        lng: res.response.geocode.feature.geometry.center.lng
+                    },
+                    zoom: 15
+                });
+                res.response.venues.forEach(v => {
+                    locationsList.appendChild(makeLi(v.name));
+                    console.log(v);
+                    addMarker(map, v.location.lat, v.location.lng);
+                });
+            });
+        });
+    }
+
+    function makeLi(name) {
+        let li = document.createElement('li');
+        li.textContent = name
+        return li;
+    }
+
+    function addMarker(map, lat, long) {
+        let pos = { lat:lat, lng:long };
+        var marker = new google.maps.Marker({
+            position: pos,
+            map: map,
+            title: 'First Marker!'
         });
     }
    
