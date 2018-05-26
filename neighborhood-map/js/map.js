@@ -1,15 +1,5 @@
 const MapView = (function () {
 
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: {
-                lat: 34.05223,
-                lng: -118.24368
-            },
-            zoom: 8
-        });
-    }
-
     function addMarker(map, data) {
         var largeInfowindow = new google.maps.InfoWindow();
         let pos = {
