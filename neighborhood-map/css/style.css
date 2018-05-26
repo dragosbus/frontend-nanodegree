@@ -159,3 +159,20 @@ h1 {
     font-size: 1.55rem;
     margin: 1rem 0;
 }
+
+.content-marker {
+    animation-name: marker;
+    animation-duration: 0.55s;
+    animation-timing-function: ease-in;
+}
+
+@keyframes marker {
+    0%{
+        opacity: 0;
+        height: 0;
+    }
+    100% {
+        opacity: 1;
+        height: 100px;
+    }
+}

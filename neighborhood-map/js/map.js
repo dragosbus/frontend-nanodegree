@@ -1,5 +1,15 @@
 const MapView = (function () {
 
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {
+                lat: 34.05223,
+                lng: -118.24368
+            },
+            zoom: 8
+        });
+    }
+
     function addMarker(map, data) {
         var largeInfowindow = new google.maps.InfoWindow();
         let pos = {
@@ -9,9 +19,9 @@ const MapView = (function () {
         var marker = new google.maps.Marker({
             position: pos,
             map: map,
-            title: data.name,
-            category: data.categories[0].pluralName,
-            address: data.location.formattedAddress[0],
+            title: data.name || "unknown",
+            category: data.categories.length ? data.categories[0].pluralName : "unknown",
+            address: data.location.formattedAddress ? data.location.formattedAddress[0] : 'unknown',
             animation: google.maps.Animation.DROP,
         });
         marker.addListener('click', function () {
@@ -22,7 +32,7 @@ const MapView = (function () {
 
     function populateInfoWindow(marker, infowindow) {
         // Check to make sure the infowindow is not already opened on this marker.
-        let content = `<div>
+        let content = `<div class="content-marker">
         <h4>${marker.title}</h4>
         <div>
             <p>Category:${marker.category}</p>
@@ -49,6 +59,6 @@ const MapView = (function () {
         }
     }
 
-    return{addMarker}
+    return{addMarker, initMap}
 
 }());
