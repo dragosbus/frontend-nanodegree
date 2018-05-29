@@ -14,8 +14,10 @@ gulp.task('serve', () => {
 });
 
 gulp.task('bundle', () =>
-    gulp.src(['js/app.js', 'js/map.js'])
-    .pipe(babel())
-    .pipe(uglify())
-    .pipe(gulp.dest('dist/js/'))
+    gulp.src("js/*.js")
+         .pipe(babel({
+             presets: ['env']
+         }))
+         .pipe(uglify())
+         .pipe(gulp.dest('dist/js/'))
 );

@@ -13,7 +13,7 @@
                         lng: res.response.geocode.feature.geometry.center.lng
                     });
                     setTimeout(this.newData, 100);
-                })
+                }).catch(e => alert("Oops.There is a error", e));
                 
         },
         getDataOnSubmit() {
@@ -24,7 +24,8 @@
                         lat: res.response.geocode.feature.geometry.center.lat,
                         lng: res.response.geocode.feature.geometry.center.lng
                     });
-                }).then(this.newData);
+                }).then(this.newData)
+                .catch(e => alert("Oops.There is a error.Please try for a real Location"));
         },
         newMap() {
             let newMap = new google.maps.Map(document.getElementById('map'), {
