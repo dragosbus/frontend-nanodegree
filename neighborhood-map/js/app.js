@@ -28,14 +28,8 @@ const UI = (function () {
         header = document.querySelector('.main-header');
         form = document.getElementById('locations');
         locationsList = document.querySelector('.locations');
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                Model.fetchData('../data.json')
-                    .then(newData)
-            }, 100);
-        });
         wrapperMenu.addEventListener('click', toggleClases);
-        form.addEventListener('submit', getLocationFromInput);
+        // form.addEventListener('submit', getLocationFromInput);
     }
 
     function toggleClases() {

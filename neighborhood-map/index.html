@@ -23,11 +23,13 @@
         <div class="menu-header">
             <h3>Locations</h3>
         </div>
-        <form id="locations">
-            <input type="text" class="location-value">
+        <form id="locations" data-bind="submit: getDataOnSubmit">
+            <input type="text" class="location-value" data-bind="value: location">
             <button type="submit">Filter</button>
         </form>
-        <ul class="locations"></ul>
+        <ul data-bind="foreach: list" class="locations">
+            <li data-bind="text: name"></li>
+        </ul>
     </div>
     <div id="map"></div>
 
@@ -45,7 +47,9 @@
             });
         }
     </script>
+    <script src="js/knockout.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/app-ko.js"></script>
     <script src="js/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEGffpXZAuR9_FpYlWSo5f28JW6ZgJgSE&callback=initMap" async
         defer></script>
