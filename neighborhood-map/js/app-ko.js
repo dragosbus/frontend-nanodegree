@@ -6,7 +6,14 @@
         coordinates: ko.observable({}),
         getData() {
             fetch('../data.json').then(res => res.json())
-                .then(res => this.list(res.response.venues));
+                .then(res => {
+                    this.list(res.response.venues);
+                    this.coordinates({
+                        lat: res.response.geocode.feature.geometry.center.lat,
+                        lng: res.response.geocode.feature.geometry.center.lng
+                    });
+                    setTimeout(this.newData, 100);
+                })
                 
         },
         getDataOnSubmit() {
@@ -32,7 +39,6 @@
     };
 
     viewModel.newData = function () {
-        console.log(viewModel.list());
         let map = viewModel.newMap();
         viewModel.list().forEach(marker => {
             MapView.addMarker(map, marker);
