@@ -11,3 +11,9 @@ Every location searched return 30 marker.You will se 30 markers on the new map r
 All Data is fetched from Foursquare.
 
 The app is responsive, too! It resizes using CSS Flexbox and media queries.
+
+## How to open
+
+The project must be served from a localhost server
+I use browser-sync npm package
+Is enough to write in the console npm install.After all dependencies are installed type in the console gulp serve.And the project will be served from a localhost server.
