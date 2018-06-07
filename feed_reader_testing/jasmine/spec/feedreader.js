@@ -52,18 +52,27 @@ $(function() {
 
     /* TODO: Write a new test suite named "The menu" */
 
+    describe("Test The Dom", ()=>{
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
-
+        it('the menu should be hide by default', ()=>{
+            expect($('body').hasClass('menu-hidden')).toBe(true);
+        });
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
-
+        it('toggle the visibility of the menu on click', ()=>{
+            $('a.menu-icon-link').trigger('click'); // show menu
+            expect($('body').hasClass('menu-hidden')).toBe(false);
+            $('a.menu-icon-link').trigger('click'); // hide menu again
+            expect($('body').hasClass('menu-hidden')).toBe(true);
+        });
+    });
     /* TODO: Write a new test suite named "Initial Entries" */
 
         /* TODO: Write a test that ensures when the loadFeed
